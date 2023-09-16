@@ -8,9 +8,11 @@
         <button type="submit" class="w-full bg-gray-200 py-2 rounded-md">Add</button>
       </form>
 
-      <button type="submit" @click="allDone" class="w-full bg-gray-200 py-2 rounded-md mb-6">All Done</button>
+      <button v-if="all_Done" type="submit" @click="allDone" class=" w-full bg-gray-200 py-2 rounded-md mb-6">All
+        Done</button>
 
       <ul v-for="todo in todos" :key="todo.title" class="my-2">
+
         <li class="flex flex-col  gap-2 text-2xl">
           <div class="flex items-center justify-between gap-2">
             <span class="flex items-center gap-2">
@@ -31,27 +33,35 @@
 export default {
   data() {
     return {
+      all_Done: false,
       newTodo: '',
       todos: [],
+
     }
   },
   methods: {
     addTodo() {
-      this.todos.push({
-        title: this.newTodo,
-        done: false
-      });
-      this.newTodo = null
-      // console.log(this.todos);
+      if (this.newTodo.length === 0) {
+        this.all_Done = false;
+        return
+      } else {
+        this.all_Done = true
+        this.todos.push({
+          title: this.newTodo,
+          done: false
+        });
+        this.newTodo = null
+        // console.log(this.todos);
+      }
     },
     remove(todo) {
       const todoIndex = this.todos.indexOf(todo);
 
       this.todos.splice(todoIndex, 1)
     },
-    allDone(){
+    allDone() {
       this.todos.forEach(todo => {
-        todo.done = !todo.done
+        todo.done = true;
       });
     }
   },
