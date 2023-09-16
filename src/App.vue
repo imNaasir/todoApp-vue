@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col  items-center mt-20 min-h-screen w-screen">
+  <div class="flex flex-col  items-center my-10 min-h-screen w-screen">
     <h1 class="text-3xl">Welcome to todo app</h1>
     <div class="md:w-1/2 w-full max-md:p-4">
       <form action="" @submit.prevent="addTodo" class="my-4 w-full flex flex-col gap-5">
